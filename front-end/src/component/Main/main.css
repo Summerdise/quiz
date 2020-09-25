@@ -1,0 +1,13 @@
+header{
+    background-color: darkblue;
+    height:60px;
+    font-size: 20px;
+    line-height: 60px;
+}
+
+header .header_icon{
+    height:30px;
+    width: 30px;
+    margin-left: 20px;
+    padding-top: 10px;
+}
