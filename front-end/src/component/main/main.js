@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import { Layout, Menu, } from 'antd';
 import './main.css';
+import Shop from "../Shop/shop";
 import Add_product from "../Add_Product/add_product";
 
 
@@ -35,6 +36,7 @@ class Main extends Component {
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
                             <Switch>
                                 <Route exact path="/add_product" component={Add_product} />
+                                <Route exact path="/" component={Shop} />
                             </Switch>
                         </div>
                     </Content>
