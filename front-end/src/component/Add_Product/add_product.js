@@ -1,66 +1,74 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
+import { Form, Input, Button } from 'antd';
 
 class Add_product extends Component {
 
-    state = {
-        name: "",
-        price: "",
-        unit: "",
-        url: "",
-    }
-
-    handleFiledChange = (position, event) => {
-        this.setState({
-            [position]: event.target.value,
-        });
-    }
-
     render() {
-        return (
-            <Fragment>
-                <main className="form">
-                    <h3>添加商品</h3>
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label className="title">*名称：</label>
-                            <input type="text"
-                                className="must_info"
-                                placeholder="名称"
-                                onChange={e => this.handleFiledChange("name", e)}
-                            />
-                        </div>
-                        <div>
-                            <label className="title">*价格：</label>
-                            <input type="text"
-                                className="must_info"
-                                placeholder="价格"
-                                onChange={e => this.handleFiledChange("prive", e)} />
-                        </div>
-                        <div>
-                            <label className="title">*单位：</label>
-                            <input type="text"
-                                className="must_info"
-                                placeholder="单位"
-                                onChange={e => this.handleFiledChange("unit", e)} />
-                        </div>
+        const layout = {
+            labelCol: { span: 8 },
+            wrapperCol: { span: 16 },
+        };
+        const tailLayout = {
+            wrapperCol: { offset: 8, span: 16 },
+        };
 
-                        <div className="checked">
-                            <label className="title">*图片：</label>
-                            <input className="must_info" type="text"
-                                placeholder="URL"
-                                onChange={e => this.handleFiledChange("url", e)} />
-                        </div>
-                        <div className="submit_div">
-                            <input type="submit" value="Submit"
-                                disabled={!this.state.name || !this.state.des}
-                                className="submit_button"
-                            />
-                        </div>
-                    </form>
-                </main>
+        const onFinish = values => {
+            console.log('Success:', values);
+        };
 
-            </Fragment>
-        )
+        const onFinishFailed = errorInfo => {
+            console.log('Failed:', errorInfo);
+        };
+        return (  
+            <Form
+                {...layout}
+                name="basic"
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+            >
+                <p>
+                    添加货品
+                </p>
+                <Form.Item
+                    label="名称"
+                    name="name"
+                    rules={[{ required: true, message: 'Please input product name!' }]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="价格"
+                    name="price"
+                    rules={[{ required: true, type: Number, message: 'Please input product price!' }]}
+                >
+                    <Input type="number"/>
+                </Form.Item>
+
+                <Form.Item
+                    label="单位"
+                    name="unit"
+                    rules={[{ required: true, message: 'Please input product unit!' }]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="图片"
+                    name="url"
+                    rules={[{ required: true, message: 'Please input product pic url!' }]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item {...tailLayout}>
+                    <Button type="primary" htmlType="submit">
+                        提交
+                    </Button>
+                </Form.Item>
+            </Form>
+        );
     }
 
 }
