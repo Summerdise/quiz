@@ -23,7 +23,7 @@ public class ProductManagement {
 
         List<Products> orderListEntities = productService.queryAllList(id);
         List<Product> orderList = orderListEntities.stream()
-                .map(Product::).collect(Collectors.toList());
+                .map(Product::get).collect(Collectors.toList());
         return ResponseEntity.ok().body(orderList);
 
     }
